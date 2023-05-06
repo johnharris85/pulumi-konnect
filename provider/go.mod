@@ -1,6 +1,6 @@
 module github.com/johnharris85/pulumi-konnect/provider
 
-go 1.18
+go 1.17
 
 require github.com/pulumi/pulumi-go-provider v0.8.0
 

@@ -19,12 +19,13 @@ import (
 	"compress/gzip"
 	"encoding/json"
 	"fmt"
-	"github.com/pulumi/pulumi-konnect/pkg/gen"
-	"github.com/pulumi/pulumi-konnect/pkg/provider"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tools"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 	"os"
 	"path"
+
+	"github.com/johnharris85/pulumi-konnect/pkg/gen"
+	"github.com/johnharris85/pulumi-konnect/pkg/provider"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tools"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 
 	"github.com/pkg/errors"
 	dotnetgen "github.com/pulumi/pulumi/pkg/v3/codegen/dotnet"

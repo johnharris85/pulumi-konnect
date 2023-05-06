@@ -20,6 +20,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"net/http"
+
+	pbempty "github.com/golang/protobuf/ptypes/empty"
 	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/pkg/v3/codegen/schema"
 	"github.com/pulumi/pulumi/pkg/v3/resource/provider"
@@ -28,9 +32,6 @@ import (
 	rpc "github.com/pulumi/pulumi/sdk/v3/proto/go"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	pbempty "google.golang.org/protobuf/ptypes/empty"
-	"io/ioutil"
-	"net/http"
 )
 
 type konnectProvider struct {

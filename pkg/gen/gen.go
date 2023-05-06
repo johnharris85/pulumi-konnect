@@ -17,17 +17,18 @@ package gen
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/go-openapi/spec"
-	"github.com/go-openapi/swag"
-	"github.com/pkg/errors"
-	"github.com/pulumi/pulumi-konnect/pkg/provider"
-	"github.com/pulumi/pulumi/pkg/v3/codegen"
-	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"github.com/go-openapi/spec"
+	"github.com/go-openapi/swag"
+	"github.com/johnharris85/pulumi-konnect/pkg/provider"
+	"github.com/pkg/errors"
+	"github.com/pulumi/pulumi/pkg/v3/codegen"
+	pschema "github.com/pulumi/pulumi/pkg/v3/codegen/schema"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/util/contract"
 )
 
 // Schema builds the Pulumi schema from an Open API spec. It also returns extra metadata that is not included in
