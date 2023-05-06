@@ -1,12 +1,13 @@
-PROJECT_NAME := Pulumi Xyz Resource Provider
+PROJECT_NAME := Pulumi konnect Resource Provider
 
-PACK             := xyz
+PACK             := konnect
 PACKDIR          := sdk
-PROJECT          := github.com/pulumi/pulumi-xyz
-NODE_MODULE_NAME := @pulumi/xyz
-NUGET_PKG_NAME   := Pulumi.Xyz
+PROJECT          := github.com/johnharris85/pulumi-konnect
+NODE_MODULE_NAME := @johnharris85/pulumi-konnect
+NUGET_PKG_NAME   := Pulumi.konnect
 
 PROVIDER        := pulumi-resource-${PACK}
+CODEGEN         := pulumi-sdkgen-${PACK}
 VERSION         ?= $(shell pulumictl get version)
 PROVIDER_PATH   := provider
 VERSION_PATH     := ${PROVIDER_PATH}/cmd/main.Version
@@ -20,6 +21,9 @@ ensure::
 	cd provider && go mod tidy
 	cd sdk && go mod tidy
 	cd tests && go mod tidy
+
+codegen::
+	(cd pkg && go build -a -o $(WORKING_DIR)/bin/$(CODEGEN) -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" $(PROJECT)/cmd/$(CODEGEN))
 
 provider::
 	(cd provider && go build -o $(WORKING_DIR)/bin/${PROVIDER} -ldflags "-X ${PROJECT}/${VERSION_PATH}=${VERSION}" $(PROJECT)/${PROVIDER_PATH}/cmd/$(PROVIDER))

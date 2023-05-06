@@ -26,7 +26,7 @@ import (
 var Version string
 
 func main() {
-	p.RunProvider("xyz", Version,
+	p.RunProvider("konnect", Version,
 		// We tell the provider what resources it needs to support.
 		// In this case, a single custom resource.
 		infer.Provider(infer.Options{
@@ -76,7 +76,7 @@ func (Random) Create(ctx p.Context, name string, input RandomArgs, preview bool)
 
 func makeRandom(length int) string {
 	seededRand := rand.New(rand.NewSource(time.Now().UnixNano()))
-	charset := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+	charset := []rune("abcdefghijklmnopqrstuvwkonnectABCDEFGHIJKLMNOPQRSTUVWkonnect0123456789")
 
 	result := make([]rune, length)
 	for i := range result {

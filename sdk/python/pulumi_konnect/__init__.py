@@ -11,11 +11,11 @@ _utilities.register(
     resource_modules="""
 [
  {
-  "pkg": "xyz",
+  "pkg": "konnect",
   "mod": "index",
-  "fqn": "pulumi_xyz",
+  "fqn": "pulumi_konnect",
   "classes": {
-   "xyz:index:Random": "Random"
+   "konnect:index:Random": "Random"
   }
  }
 ]
@@ -23,9 +23,9 @@ _utilities.register(
     resource_packages="""
 [
  {
-  "pkg": "xyz",
-  "token": "pulumi:providers:xyz",
-  "fqn": "pulumi_xyz",
+  "pkg": "konnect",
+  "token": "pulumi:providers:konnect",
+  "fqn": "pulumi_konnect",
   "class": "Provider"
  }
 ]
