@@ -1,0 +1,5 @@
+{
+  "resource": true,
+  "name": "konnect",
+  "server": "github://api.github.com/johnharris85/pulumi-konnect"
+}

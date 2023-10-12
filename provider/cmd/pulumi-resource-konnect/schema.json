@@ -1,0 +1,1939 @@
+{
+    "name": "konnect",
+    "displayName": "Konnect",
+    "description": "A Pulumi package for creating and managing Konnect resources",
+    "keywords": [
+        "pulumi",
+        "konnect",
+        "category/cloud"
+    ],
+    "homepage": "https://github.com/johnharris85/pulumi-konnect",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`konnect` Terraform Provider](https://github.com/scastria/terraform-provider-konnect).",
+    "repository": "https://github.com/johnharris85/pulumi-konnect",
+    "logoUrl": "https://raw.githubusercontent.com/johnharris85/pulumi-konnect/main/docs/konnect.png",
+    "pluginDownloadURL": "github://api.github.com/johnharris85/pulumi-konnect",
+    "publisher": "johnharris85",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "language": {
+        "csharp": {
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
+            "compatibility": "tfbridge20",
+            "rootNamespace": "johnharris85"
+        },
+        "go": {
+            "importBasePath": "github.com/johnharris85/pulumi-konnect/sdk/go/konnect",
+            "generateResourceContainerTypes": true,
+            "generateExtraInputTypes": true
+        },
+        "java": {
+            "basePackage": "com.johnharris85",
+            "buildFiles": "",
+            "gradleNexusPublishPluginVersion": "",
+            "gradleTest": ""
+        },
+        "nodejs": {
+            "packageName": "@johnharris85/konnect",
+            "packageDescription": "A Pulumi package for creating and managing Konnect resources",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/scastria/terraform-provider-konnect)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-konnect` repo](https://github.com/johnharris85/pulumi-konnect/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-konnect` repo](https://github.com/scastria/terraform-provider-konnect/issues).",
+            "dependencies": {
+                "@pulumi/pulumi": "^3.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^10.0.0"
+            },
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
+        },
+        "python": {
+            "packageName": "johnharris85_konnect",
+            "requires": {
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/scastria/terraform-provider-konnect)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-konnect` repo](https://github.com/johnharris85/pulumi-konnect/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-konnect` repo](https://github.com/scastria/terraform-provider-konnect/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
+        }
+    },
+    "config": {
+        "variables": {
+            "pat": {
+                "type": "string"
+            },
+            "region": {
+                "type": "string"
+            }
+        },
+        "defaults": [
+            "pat"
+        ]
+    },
+    "types": {
+        "konnect:index/RouteHeader:RouteHeader": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "**(Required, String)** Name of header this route should require.\n"
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Required, List of String)** Allowed values this header should equal.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "name",
+                "values"
+            ]
+        },
+        "konnect:index/TeamMappingsMapping:TeamMappingsMapping": {
+            "properties": {
+                "group": {
+                    "type": "string",
+                    "description": "**(Required, String)** Identifier of an IdP group that is contained with OIDC ID token for groups claim\n"
+                },
+                "teamIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Required, List of String)** Konnect teams that should map to this group.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "group",
+                "teamIds"
+            ]
+        },
+        "konnect:index/getNodesNode:getNodesNode": {
+            "properties": {
+                "configHash": {
+                    "type": "string",
+                    "description": "**(String)** Hash of the current configuration state of node.\n"
+                },
+                "dataPlaneCertId": {
+                    "type": "string",
+                    "description": "**(String)** Id of certificate used in communication between node and runtime group.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "**(String)** Hostname of node.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "**(String)** Id of node.\n"
+                },
+                "lastPing": {
+                    "type": "integer",
+                    "description": "**(Integer)** Last time of ping of node.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "**(String)** Type of node.\n"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "**(String)** Version of node.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "configHash",
+                "dataPlaneCertId",
+                "hostname",
+                "id",
+                "lastPing",
+                "type",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the konnect package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "properties": {
+            "pat": {
+                "type": "string"
+            },
+            "region": {
+                "type": "string"
+            }
+        },
+        "required": [
+            "pat"
+        ],
+        "inputProperties": {
+            "pat": {
+                "type": "string"
+            },
+            "region": {
+                "type": "string"
+            }
+        },
+        "requiredInputs": [
+            "pat"
+        ]
+    },
+    "resources": {
+        "konnect:index/authenticationSettings:AuthenticationSettings": {
+            "description": "Represents authentication settings\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\n\nconst example = new konnect.AuthenticationSettings(\"example\", {\n    basicAuthEnabled: true,\n    idpMappingEnabled: false,\n    konnectMappingEnabled: true,\n    oidcAuthEnabled: true,\n});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\n\nexample = konnect.AuthenticationSettings(\"example\",\n    basic_auth_enabled=True,\n    idp_mapping_enabled=False,\n    konnect_mapping_enabled=True,\n    oidc_auth_enabled=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Konnect.AuthenticationSettings(\"example\", new()\n    {\n        BasicAuthEnabled = true,\n        IdpMappingEnabled = false,\n        KonnectMappingEnabled = true,\n        OidcAuthEnabled = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.NewAuthenticationSettings(ctx, \"example\", \u0026konnect.AuthenticationSettingsArgs{\n\t\t\tBasicAuthEnabled:      pulumi.Bool(true),\n\t\t\tIdpMappingEnabled:     pulumi.Bool(false),\n\t\t\tKonnectMappingEnabled: pulumi.Bool(true),\n\t\t\tOidcAuthEnabled:       pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.AuthenticationSettings;\nimport com.pulumi.konnect.AuthenticationSettingsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new AuthenticationSettings(\"example\", AuthenticationSettingsArgs.builder()        \n            .basicAuthEnabled(true)\n            .idpMappingEnabled(false)\n            .konnectMappingEnabled(true)\n            .oidcAuthEnabled(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: konnect:AuthenticationSettings\n    properties:\n      basicAuthEnabled: true\n      idpMappingEnabled: false\n      konnectMappingEnabled: true\n      oidcAuthEnabled: true\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAuthentication settings can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "basicAuthEnabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether basic authentication is enabled.\n"
+                },
+                "idpMappingEnabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether IDP mapping is enabled.\n"
+                },
+                "konnectMappingEnabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether Konnect mapping is enabled.\n"
+                },
+                "oidcAuthEnabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether OIDC authentication is enabled.\n"
+                }
+            },
+            "inputProperties": {
+                "basicAuthEnabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether basic authentication is enabled.\n"
+                },
+                "idpMappingEnabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether IDP mapping is enabled.\n"
+                },
+                "konnectMappingEnabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether Konnect mapping is enabled.\n"
+                },
+                "oidcAuthEnabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether OIDC authentication is enabled.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering AuthenticationSettings resources.\n",
+                "properties": {
+                    "basicAuthEnabled": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether basic authentication is enabled.\n"
+                    },
+                    "idpMappingEnabled": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether IDP mapping is enabled.\n"
+                    },
+                    "konnectMappingEnabled": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether Konnect mapping is enabled.\n"
+                    },
+                    "oidcAuthEnabled": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether OIDC authentication is enabled.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/consumer:Consumer": {
+            "description": "Represents a consumer within a runtime group\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst runtimeGroup = konnect.getRuntimeGroup({\n    name: \"TestRuntimeGroup\",\n});\nconst example = new konnect.Consumer(\"example\", {\n    runtimeGroupId: runtimeGroup.then(runtimeGroup =\u003e runtimeGroup.id),\n    username: \"testuser\",\n    customId: \"testcustom\",\n});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\nimport pulumi_konnect as konnect\n\nruntime_group = konnect.get_runtime_group(name=\"TestRuntimeGroup\")\nexample = konnect.Consumer(\"example\",\n    runtime_group_id=runtime_group.id,\n    username=\"testuser\",\n    custom_id=\"testcustom\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var runtimeGroup = Konnect.GetRuntimeGroup.Invoke(new()\n    {\n        Name = \"TestRuntimeGroup\",\n    });\n\n    var example = new Konnect.Consumer(\"example\", new()\n    {\n        RuntimeGroupId = runtimeGroup.Apply(getRuntimeGroupResult =\u003e getRuntimeGroupResult.Id),\n        Username = \"testuser\",\n        CustomId = \"testcustom\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\truntimeGroup, err := konnect.LookupRuntimeGroup(ctx, \u0026konnect.LookupRuntimeGroupArgs{\n\t\t\tName: pulumi.StringRef(\"TestRuntimeGroup\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.NewConsumer(ctx, \"example\", \u0026konnect.ConsumerArgs{\n\t\t\tRuntimeGroupId: *pulumi.String(runtimeGroup.Id),\n\t\t\tUsername:       pulumi.String(\"testuser\"),\n\t\t\tCustomId:       pulumi.String(\"testcustom\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRuntimeGroupArgs;\nimport com.pulumi.konnect.Consumer;\nimport com.pulumi.konnect.ConsumerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var runtimeGroup = KonnectFunctions.getRuntimeGroup(GetRuntimeGroupArgs.builder()\n            .name(\"TestRuntimeGroup\")\n            .build());\n\n        var example = new Consumer(\"example\", ConsumerArgs.builder()        \n            .runtimeGroupId(runtimeGroup.applyValue(getRuntimeGroupResult -\u003e getRuntimeGroupResult.id()))\n            .username(\"testuser\")\n            .customId(\"testcustom\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: konnect:Consumer\n    properties:\n      runtimeGroupId: ${runtimeGroup.id}\n      username: testuser\n      customId: testcustom\nvariables:\n  runtimeGroup:\n    fn::invoke:\n      Function: konnect:getRuntimeGroup\n      Arguments:\n        name: TestRuntimeGroup\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nConsumers can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "consumerId": {
+                    "type": "string",
+                    "description": "**(String)** Id of the consumer alone\n"
+                },
+                "customId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Field for storing an existing unique ID for the Consumer.\n"
+                },
+                "runtimeGroupId": {
+                    "type": "string",
+                    "description": "**(Required, String)** The id of the runtime group.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The unique username of the Consumer.\n"
+                }
+            },
+            "required": [
+                "consumerId",
+                "runtimeGroupId"
+            ],
+            "inputProperties": {
+                "customId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Field for storing an existing unique ID for the Consumer.\n"
+                },
+                "runtimeGroupId": {
+                    "type": "string",
+                    "description": "**(Required, String)** The id of the runtime group.\n"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The unique username of the Consumer.\n"
+                }
+            },
+            "requiredInputs": [
+                "runtimeGroupId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Consumer resources.\n",
+                "properties": {
+                    "consumerId": {
+                        "type": "string",
+                        "description": "**(String)** Id of the consumer alone\n"
+                    },
+                    "customId": {
+                        "type": "string",
+                        "description": "**(Optional, String)** Field for storing an existing unique ID for the Consumer.\n"
+                    },
+                    "runtimeGroupId": {
+                        "type": "string",
+                        "description": "**(Required, String)** The id of the runtime group.\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The unique username of the Consumer.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/identityProvider:IdentityProvider": {
+            "description": "Represents identity provider settings\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\n\nconst example = new konnect.IdentityProvider(\"example\", {\n    clientId: \"XXXX\",\n    clientSecret: \"YYYY\",\n    emailClaimMapping: \"email\",\n    groupsClaimMapping: \"groups\",\n    issuer: \"https://example.com\",\n    loginPath: \"login\",\n    nameClaimMapping: \"name\",\n    scopes: [\n        \"email\",\n        \"openid\",\n        \"profile\",\n    ],\n});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\n\nexample = konnect.IdentityProvider(\"example\",\n    client_id=\"XXXX\",\n    client_secret=\"YYYY\",\n    email_claim_mapping=\"email\",\n    groups_claim_mapping=\"groups\",\n    issuer=\"https://example.com\",\n    login_path=\"login\",\n    name_claim_mapping=\"name\",\n    scopes=[\n        \"email\",\n        \"openid\",\n        \"profile\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Konnect.IdentityProvider(\"example\", new()\n    {\n        ClientId = \"XXXX\",\n        ClientSecret = \"YYYY\",\n        EmailClaimMapping = \"email\",\n        GroupsClaimMapping = \"groups\",\n        Issuer = \"https://example.com\",\n        LoginPath = \"login\",\n        NameClaimMapping = \"name\",\n        Scopes = new[]\n        {\n            \"email\",\n            \"openid\",\n            \"profile\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.NewIdentityProvider(ctx, \"example\", \u0026konnect.IdentityProviderArgs{\n\t\t\tClientId:           pulumi.String(\"XXXX\"),\n\t\t\tClientSecret:       pulumi.String(\"YYYY\"),\n\t\t\tEmailClaimMapping:  pulumi.String(\"email\"),\n\t\t\tGroupsClaimMapping: pulumi.String(\"groups\"),\n\t\t\tIssuer:             pulumi.String(\"https://example.com\"),\n\t\t\tLoginPath:          pulumi.String(\"login\"),\n\t\t\tNameClaimMapping:   pulumi.String(\"name\"),\n\t\t\tScopes: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"email\"),\n\t\t\t\tpulumi.String(\"openid\"),\n\t\t\t\tpulumi.String(\"profile\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.IdentityProvider;\nimport com.pulumi.konnect.IdentityProviderArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new IdentityProvider(\"example\", IdentityProviderArgs.builder()        \n            .clientId(\"XXXX\")\n            .clientSecret(\"YYYY\")\n            .emailClaimMapping(\"email\")\n            .groupsClaimMapping(\"groups\")\n            .issuer(\"https://example.com\")\n            .loginPath(\"login\")\n            .nameClaimMapping(\"name\")\n            .scopes(            \n                \"email\",\n                \"openid\",\n                \"profile\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: konnect:IdentityProvider\n    properties:\n      clientId: XXXX\n      clientSecret: YYYY\n      emailClaimMapping: email\n      groupsClaimMapping: groups\n      issuer: https://example.com\n      loginPath: login\n      nameClaimMapping: name\n      scopes:\n        - email\n        - openid\n        - profile\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nIdentity provider can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Client ID of the identity provider.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "**(Optional, String, Sensitive)** Client secret of the identity provider.\n",
+                    "secret": true
+                },
+                "emailClaimMapping": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Claim to map email for the identity provider.\n"
+                },
+                "groupsClaimMapping": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Claim to map groups for the identity provider.\n"
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Issuer of the identity provider.\n"
+                },
+                "loginPath": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Login path of the identity provider.\n"
+                },
+                "nameClaimMapping": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Claim to map name for the identity provider.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** Scopes of the identity provider.\n"
+                }
+            },
+            "inputProperties": {
+                "clientId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Client ID of the identity provider.\n"
+                },
+                "clientSecret": {
+                    "type": "string",
+                    "description": "**(Optional, String, Sensitive)** Client secret of the identity provider.\n",
+                    "secret": true
+                },
+                "emailClaimMapping": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Claim to map email for the identity provider.\n"
+                },
+                "groupsClaimMapping": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Claim to map groups for the identity provider.\n"
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Issuer of the identity provider.\n"
+                },
+                "loginPath": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Login path of the identity provider.\n"
+                },
+                "nameClaimMapping": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Claim to map name for the identity provider.\n"
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** Scopes of the identity provider.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IdentityProvider resources.\n",
+                "properties": {
+                    "clientId": {
+                        "type": "string",
+                        "description": "**(Optional, String)** Client ID of the identity provider.\n"
+                    },
+                    "clientSecret": {
+                        "type": "string",
+                        "description": "**(Optional, String, Sensitive)** Client secret of the identity provider.\n",
+                        "secret": true
+                    },
+                    "emailClaimMapping": {
+                        "type": "string",
+                        "description": "**(Optional, String)** Claim to map email for the identity provider.\n"
+                    },
+                    "groupsClaimMapping": {
+                        "type": "string",
+                        "description": "**(Optional, String)** Claim to map groups for the identity provider.\n"
+                    },
+                    "issuer": {
+                        "type": "string",
+                        "description": "**(Optional, String)** Issuer of the identity provider.\n"
+                    },
+                    "loginPath": {
+                        "type": "string",
+                        "description": "**(Optional, String)** Login path of the identity provider.\n"
+                    },
+                    "nameClaimMapping": {
+                        "type": "string",
+                        "description": "**(Optional, String)** Claim to map name for the identity provider.\n"
+                    },
+                    "scopes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "**(Optional, List of String)** Scopes of the identity provider.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/plugin:Plugin": {
+            "description": "Represents a plugin within a runtime group\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst runtimeGroup = konnect.getRuntimeGroup({\n    name: \"TestRuntimeGroup\",\n});\nconst example = new konnect.Plugin(\"example\", {\n    runtimeGroupId: runtimeGroup.then(runtimeGroup =\u003e runtimeGroup.id),\n    configJson: `{\n  \"minute\": 5\n}\n`,\n});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\nimport pulumi_konnect as konnect\n\nruntime_group = konnect.get_runtime_group(name=\"TestRuntimeGroup\")\nexample = konnect.Plugin(\"example\",\n    runtime_group_id=runtime_group.id,\n    config_json=\"\"\"{\n  \"minute\": 5\n}\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var runtimeGroup = Konnect.GetRuntimeGroup.Invoke(new()\n    {\n        Name = \"TestRuntimeGroup\",\n    });\n\n    var example = new Konnect.Plugin(\"example\", new()\n    {\n        RuntimeGroupId = runtimeGroup.Apply(getRuntimeGroupResult =\u003e getRuntimeGroupResult.Id),\n        ConfigJson = @\"{\n  \"\"minute\"\": 5\n}\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\truntimeGroup, err := konnect.LookupRuntimeGroup(ctx, \u0026konnect.LookupRuntimeGroupArgs{\n\t\t\tName: pulumi.StringRef(\"TestRuntimeGroup\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.NewPlugin(ctx, \"example\", \u0026konnect.PluginArgs{\n\t\t\tRuntimeGroupId: *pulumi.String(runtimeGroup.Id),\n\t\t\tConfigJson:     pulumi.String(\"{\\n  \\\"minute\\\": 5\\n}\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRuntimeGroupArgs;\nimport com.pulumi.konnect.Plugin;\nimport com.pulumi.konnect.PluginArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var runtimeGroup = KonnectFunctions.getRuntimeGroup(GetRuntimeGroupArgs.builder()\n            .name(\"TestRuntimeGroup\")\n            .build());\n\n        var example = new Plugin(\"example\", PluginArgs.builder()        \n            .runtimeGroupId(runtimeGroup.applyValue(getRuntimeGroupResult -\u003e getRuntimeGroupResult.id()))\n            .configJson(\"\"\"\n{\n  \"minute\": 5\n}\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: konnect:Plugin\n    properties:\n      runtimeGroupId: ${runtimeGroup.id}\n      configJson: |\n        {\n          \"minute\": 5\n        }\nvariables:\n  runtimeGroup:\n    fn::invoke:\n      Function: konnect:getRuntimeGroup\n      Arguments:\n        name: TestRuntimeGroup\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nPlugins can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "configAllJson": {
+                    "type": "string",
+                    "description": "**(JSON)** The full configuration properties for the plugin, including all properties with their default values not specified in `config`.\n"
+                },
+                "configJson": {
+                    "type": "string",
+                    "description": "**(Optional, JSON)** The configuration properties for the plugin which can be found on the plugins documentation page in the [Kong Plugin Hub](https://docs.konghq.com/hub/)\n"
+                },
+                "consumerId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** If set, the plugin will activate only for requests where the specified consumer has been authenticated.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether the plugin is active. Default: `true`\n"
+                },
+                "instanceName": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The instance name of the plugin. Default: `-`\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Required, String)** The name of the plugin which must match a valid installed plugin.\n"
+                },
+                "pluginId": {
+                    "type": "string",
+                    "description": "**(String)** Id of the plugin alone\n"
+                },
+                "protocols": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** A list of the request protocols that will trigger this plugin. Allowed values: `grpc`, `grpcs`, `http`, `https`, `tcp`, `tls`, `tls_passthrough`, `udp`, `ws`, `wss`\n"
+                },
+                "routeId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** If set, the plugin will only activate when receiving requests via the specified route.\n"
+                },
+                "runtimeGroupId": {
+                    "type": "string",
+                    "description": "**(Required, String)** The id of the runtime group.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.\n"
+                }
+            },
+            "required": [
+                "configAllJson",
+                "name",
+                "pluginId",
+                "runtimeGroupId"
+            ],
+            "inputProperties": {
+                "configJson": {
+                    "type": "string",
+                    "description": "**(Optional, JSON)** The configuration properties for the plugin which can be found on the plugins documentation page in the [Kong Plugin Hub](https://docs.konghq.com/hub/)\n"
+                },
+                "consumerId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** If set, the plugin will activate only for requests where the specified consumer has been authenticated.\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether the plugin is active. Default: `true`\n"
+                },
+                "instanceName": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The instance name of the plugin. Default: `-`\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Required, String)** The name of the plugin which must match a valid installed plugin.\n"
+                },
+                "protocols": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** A list of the request protocols that will trigger this plugin. Allowed values: `grpc`, `grpcs`, `http`, `https`, `tcp`, `tls`, `tls_passthrough`, `udp`, `ws`, `wss`\n"
+                },
+                "routeId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** If set, the plugin will only activate when receiving requests via the specified route.\n"
+                },
+                "runtimeGroupId": {
+                    "type": "string",
+                    "description": "**(Required, String)** The id of the runtime group.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.\n"
+                }
+            },
+            "requiredInputs": [
+                "runtimeGroupId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Plugin resources.\n",
+                "properties": {
+                    "configAllJson": {
+                        "type": "string",
+                        "description": "**(JSON)** The full configuration properties for the plugin, including all properties with their default values not specified in `config`.\n"
+                    },
+                    "configJson": {
+                        "type": "string",
+                        "description": "**(Optional, JSON)** The configuration properties for the plugin which can be found on the plugins documentation page in the [Kong Plugin Hub](https://docs.konghq.com/hub/)\n"
+                    },
+                    "consumerId": {
+                        "type": "string",
+                        "description": "**(Optional, String)** If set, the plugin will activate only for requests where the specified consumer has been authenticated.\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether the plugin is active. Default: `true`\n"
+                    },
+                    "instanceName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The instance name of the plugin. Default: `-`\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "**(Required, String)** The name of the plugin which must match a valid installed plugin.\n"
+                    },
+                    "pluginId": {
+                        "type": "string",
+                        "description": "**(String)** Id of the plugin alone\n"
+                    },
+                    "protocols": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "**(Optional, List of String)** A list of the request protocols that will trigger this plugin. Allowed values: `grpc`, `grpcs`, `http`, `https`, `tcp`, `tls`, `tls_passthrough`, `udp`, `ws`, `wss`\n"
+                    },
+                    "routeId": {
+                        "type": "string",
+                        "description": "**(Optional, String)** If set, the plugin will only activate when receiving requests via the specified route.\n"
+                    },
+                    "runtimeGroupId": {
+                        "type": "string",
+                        "description": "**(Required, String)** The id of the runtime group.\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "**(Optional, String)** If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/route:Route": {
+            "description": "Represents a route within a runtime group\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst runtimeGroup = konnect.getRuntimeGroup({\n    name: \"TestRuntimeGroup\",\n});\nconst service = new konnect.Service(\"service\", {\n    runtimeGroupId: runtimeGroup.then(runtimeGroup =\u003e runtimeGroup.id),\n    host: \"mockbin.org\",\n});\nconst example = new konnect.Route(\"example\", {\n    runtimeGroupId: runtimeGroup.then(runtimeGroup =\u003e runtimeGroup.id),\n    serviceId: service.serviceId,\n    protocols: [\"http\"],\n    paths: [\"/example\"],\n    headers: [{\n        name: \"required-header\",\n        values: [\"required-header-values\"],\n    }],\n});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\nimport pulumi_konnect as konnect\n\nruntime_group = konnect.get_runtime_group(name=\"TestRuntimeGroup\")\nservice = konnect.Service(\"service\",\n    runtime_group_id=runtime_group.id,\n    host=\"mockbin.org\")\nexample = konnect.Route(\"example\",\n    runtime_group_id=runtime_group.id,\n    service_id=service.service_id,\n    protocols=[\"http\"],\n    paths=[\"/example\"],\n    headers=[konnect.RouteHeaderArgs(\n        name=\"required-header\",\n        values=[\"required-header-values\"],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var runtimeGroup = Konnect.GetRuntimeGroup.Invoke(new()\n    {\n        Name = \"TestRuntimeGroup\",\n    });\n\n    var service = new Konnect.Service(\"service\", new()\n    {\n        RuntimeGroupId = runtimeGroup.Apply(getRuntimeGroupResult =\u003e getRuntimeGroupResult.Id),\n        Host = \"mockbin.org\",\n    });\n\n    var example = new Konnect.Route(\"example\", new()\n    {\n        RuntimeGroupId = runtimeGroup.Apply(getRuntimeGroupResult =\u003e getRuntimeGroupResult.Id),\n        ServiceId = service.ServiceId,\n        Protocols = new[]\n        {\n            \"http\",\n        },\n        Paths = new[]\n        {\n            \"/example\",\n        },\n        Headers = new[]\n        {\n            new Konnect.Inputs.RouteHeaderArgs\n            {\n                Name = \"required-header\",\n                Values = new[]\n                {\n                    \"required-header-values\",\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\truntimeGroup, err := konnect.LookupRuntimeGroup(ctx, \u0026konnect.LookupRuntimeGroupArgs{\n\t\t\tName: pulumi.StringRef(\"TestRuntimeGroup\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tservice, err := konnect.NewService(ctx, \"service\", \u0026konnect.ServiceArgs{\n\t\t\tRuntimeGroupId: *pulumi.String(runtimeGroup.Id),\n\t\t\tHost:           pulumi.String(\"mockbin.org\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.NewRoute(ctx, \"example\", \u0026konnect.RouteArgs{\n\t\t\tRuntimeGroupId: *pulumi.String(runtimeGroup.Id),\n\t\t\tServiceId:      service.ServiceId,\n\t\t\tProtocols: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"http\"),\n\t\t\t},\n\t\t\tPaths: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"/example\"),\n\t\t\t},\n\t\t\tHeaders: konnect.RouteHeaderArray{\n\t\t\t\t\u0026konnect.RouteHeaderArgs{\n\t\t\t\t\tName: pulumi.String(\"required-header\"),\n\t\t\t\t\tValues: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"required-header-values\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRuntimeGroupArgs;\nimport com.pulumi.konnect.Service;\nimport com.pulumi.konnect.ServiceArgs;\nimport com.pulumi.konnect.Route;\nimport com.pulumi.konnect.RouteArgs;\nimport com.pulumi.konnect.inputs.RouteHeaderArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var runtimeGroup = KonnectFunctions.getRuntimeGroup(GetRuntimeGroupArgs.builder()\n            .name(\"TestRuntimeGroup\")\n            .build());\n\n        var service = new Service(\"service\", ServiceArgs.builder()        \n            .runtimeGroupId(runtimeGroup.applyValue(getRuntimeGroupResult -\u003e getRuntimeGroupResult.id()))\n            .host(\"mockbin.org\")\n            .build());\n\n        var example = new Route(\"example\", RouteArgs.builder()        \n            .runtimeGroupId(runtimeGroup.applyValue(getRuntimeGroupResult -\u003e getRuntimeGroupResult.id()))\n            .serviceId(service.serviceId())\n            .protocols(\"http\")\n            .paths(\"/example\")\n            .headers(RouteHeaderArgs.builder()\n                .name(\"required-header\")\n                .values(\"required-header-values\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  service:\n    type: konnect:Service\n    properties:\n      runtimeGroupId: ${runtimeGroup.id}\n      host: mockbin.org\n  example:\n    type: konnect:Route\n    properties:\n      runtimeGroupId: ${runtimeGroup.id}\n      serviceId: ${service.serviceId}\n      protocols:\n        - http\n      paths:\n        - /example\n      headers:\n        - name: required-header\n          values:\n            - required-header-values\nvariables:\n  runtimeGroup:\n    fn::invoke:\n      Function: konnect:getRuntimeGroup\n      Arguments:\n        name: TestRuntimeGroup\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRoutes can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/konnect:index/RouteHeader:RouteHeader"
+                    },
+                    "description": "**(Optional, set{header})** Configuration block for a header.  Can be specified multiple times for each header.  Each block supports the fields documented below.\n"
+                },
+                "hosts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** The hosts this route should allow.\n"
+                },
+                "httpsRedirectStatusCode": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The status code Kong responds with when all properties of a Route match except the protocol. Allowed values: `426`, `301`, `302`, `307`, `308`. Default: `426`\n"
+                },
+                "methods": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** The methods this route should allow. Allowed values: `GET`, `PUT`, `POST`, `PATCH`, `DELETE`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The name of the route.\n"
+                },
+                "pathHandling": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. Allowed values: `v0`, `v1`. Default: `v0`\n"
+                },
+                "paths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** The paths this route should allow.\n"
+                },
+                "preserveHost": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether to use the request `Host` header during the Service request. Default: `false`\n"
+                },
+                "protocols": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** The protocols this route should allow. Allowed values: `http`, `hhtps`\n"
+                },
+                "regexPriority": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. Default: `0`\n"
+                },
+                "requestBuffering": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether to enable request body buffering. Default: `true`\n"
+                },
+                "responseBuffering": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether to enable response body buffering. Default: `true`\n"
+                },
+                "routeId": {
+                    "type": "string",
+                    "description": "**(String)** Id of the route alone\n"
+                },
+                "runtimeGroupId": {
+                    "type": "string",
+                    "description": "**(Required, String)** The id of the runtime group.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The id of the service to forward traffic to.\n"
+                },
+                "stripPath": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether to strip the matching prefix from the Service request. Default: `true`\n"
+                }
+            },
+            "required": [
+                "name",
+                "routeId",
+                "runtimeGroupId"
+            ],
+            "inputProperties": {
+                "headers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/konnect:index/RouteHeader:RouteHeader"
+                    },
+                    "description": "**(Optional, set{header})** Configuration block for a header.  Can be specified multiple times for each header.  Each block supports the fields documented below.\n"
+                },
+                "hosts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** The hosts this route should allow.\n"
+                },
+                "httpsRedirectStatusCode": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The status code Kong responds with when all properties of a Route match except the protocol. Allowed values: `426`, `301`, `302`, `307`, `308`. Default: `426`\n"
+                },
+                "methods": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** The methods this route should allow. Allowed values: `GET`, `PUT`, `POST`, `PATCH`, `DELETE`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The name of the route.\n"
+                },
+                "pathHandling": {
+                    "type": "string",
+                    "description": "**(Optional, String)** Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. Allowed values: `v0`, `v1`. Default: `v0`\n"
+                },
+                "paths": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** The paths this route should allow.\n"
+                },
+                "preserveHost": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether to use the request `Host` header during the Service request. Default: `false`\n"
+                },
+                "protocols": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "**(Optional, List of String)** The protocols this route should allow. Allowed values: `http`, `hhtps`\n"
+                },
+                "regexPriority": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. Default: `0`\n"
+                },
+                "requestBuffering": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether to enable request body buffering. Default: `true`\n"
+                },
+                "responseBuffering": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether to enable response body buffering. Default: `true`\n"
+                },
+                "runtimeGroupId": {
+                    "type": "string",
+                    "description": "**(Required, String)** The id of the runtime group.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The id of the service to forward traffic to.\n"
+                },
+                "stripPath": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether to strip the matching prefix from the Service request. Default: `true`\n"
+                }
+            },
+            "requiredInputs": [
+                "runtimeGroupId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Route resources.\n",
+                "properties": {
+                    "headers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/konnect:index/RouteHeader:RouteHeader"
+                        },
+                        "description": "**(Optional, set{header})** Configuration block for a header.  Can be specified multiple times for each header.  Each block supports the fields documented below.\n"
+                    },
+                    "hosts": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "**(Optional, List of String)** The hosts this route should allow.\n"
+                    },
+                    "httpsRedirectStatusCode": {
+                        "type": "integer",
+                        "description": "**(Optional, Integer)** The status code Kong responds with when all properties of a Route match except the protocol. Allowed values: `426`, `301`, `302`, `307`, `308`. Default: `426`\n"
+                    },
+                    "methods": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "**(Optional, List of String)** The methods this route should allow. Allowed values: `GET`, `PUT`, `POST`, `PATCH`, `DELETE`, `OPTIONS`, `HEAD`, `CONNECT`, `TRACE`\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The name of the route.\n"
+                    },
+                    "pathHandling": {
+                        "type": "string",
+                        "description": "**(Optional, String)** Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. Allowed values: `v0`, `v1`. Default: `v0`\n"
+                    },
+                    "paths": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "**(Optional, List of String)** The paths this route should allow.\n"
+                    },
+                    "preserveHost": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether to use the request `Host` header during the Service request. Default: `false`\n"
+                    },
+                    "protocols": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "**(Optional, List of String)** The protocols this route should allow. Allowed values: `http`, `hhtps`\n"
+                    },
+                    "regexPriority": {
+                        "type": "integer",
+                        "description": "**(Optional, Integer)** A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. Default: `0`\n"
+                    },
+                    "requestBuffering": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether to enable request body buffering. Default: `true`\n"
+                    },
+                    "responseBuffering": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether to enable response body buffering. Default: `true`\n"
+                    },
+                    "routeId": {
+                        "type": "string",
+                        "description": "**(String)** Id of the route alone\n"
+                    },
+                    "runtimeGroupId": {
+                        "type": "string",
+                        "description": "**(Required, String)** The id of the runtime group.\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The id of the service to forward traffic to.\n"
+                    },
+                    "stripPath": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether to strip the matching prefix from the Service request. Default: `true`\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/runtimeGroup:RuntimeGroup": {
+            "description": "Represents a runtime group\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\n\nconst example = new konnect.RuntimeGroup(\"example\", {description: \"TestRuntimeGroup\"});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\n\nexample = konnect.RuntimeGroup(\"example\", description=\"TestRuntimeGroup\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Konnect.RuntimeGroup(\"example\", new()\n    {\n        Description = \"TestRuntimeGroup\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.NewRuntimeGroup(ctx, \"example\", \u0026konnect.RuntimeGroupArgs{\n\t\t\tDescription: pulumi.String(\"TestRuntimeGroup\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.RuntimeGroup;\nimport com.pulumi.konnect.RuntimeGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new RuntimeGroup(\"example\", RuntimeGroupArgs.builder()        \n            .description(\"TestRuntimeGroup\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: konnect:RuntimeGroup\n    properties:\n      description: TestRuntimeGroup\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nRuntime groups can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "clusterType": {
+                    "type": "string",
+                    "description": "**(String)** The cluster type of the runtime group.\n"
+                },
+                "controlPlaneEndpoint": {
+                    "type": "string",
+                    "description": "**(String)** The control plane endpoint URL of the runtime group.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The description of the runtime group.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Required, String)** The name of the runtime group.\n"
+                },
+                "telemetryEndpoint": {
+                    "type": "string",
+                    "description": "**(String)** The telemetry endpoint URL of the runtime group.\n"
+                }
+            },
+            "required": [
+                "clusterType",
+                "controlPlaneEndpoint",
+                "name",
+                "telemetryEndpoint"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The description of the runtime group.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Required, String)** The name of the runtime group.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering RuntimeGroup resources.\n",
+                "properties": {
+                    "clusterType": {
+                        "type": "string",
+                        "description": "**(String)** The cluster type of the runtime group.\n"
+                    },
+                    "controlPlaneEndpoint": {
+                        "type": "string",
+                        "description": "**(String)** The control plane endpoint URL of the runtime group.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The description of the runtime group.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "**(Required, String)** The name of the runtime group.\n"
+                    },
+                    "telemetryEndpoint": {
+                        "type": "string",
+                        "description": "**(String)** The telemetry endpoint URL of the runtime group.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/service:Service": {
+            "description": "Represents a service within a runtime group\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst runtimeGroup = konnect.getRuntimeGroup({\n    name: \"TestRuntimeGroup\",\n});\nconst example = new konnect.Service(\"example\", {\n    runtimeGroupId: runtimeGroup.then(runtimeGroup =\u003e runtimeGroup.id),\n    host: \"mockbin.org\",\n});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\nimport pulumi_konnect as konnect\n\nruntime_group = konnect.get_runtime_group(name=\"TestRuntimeGroup\")\nexample = konnect.Service(\"example\",\n    runtime_group_id=runtime_group.id,\n    host=\"mockbin.org\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var runtimeGroup = Konnect.GetRuntimeGroup.Invoke(new()\n    {\n        Name = \"TestRuntimeGroup\",\n    });\n\n    var example = new Konnect.Service(\"example\", new()\n    {\n        RuntimeGroupId = runtimeGroup.Apply(getRuntimeGroupResult =\u003e getRuntimeGroupResult.Id),\n        Host = \"mockbin.org\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\truntimeGroup, err := konnect.LookupRuntimeGroup(ctx, \u0026konnect.LookupRuntimeGroupArgs{\n\t\t\tName: pulumi.StringRef(\"TestRuntimeGroup\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.NewService(ctx, \"example\", \u0026konnect.ServiceArgs{\n\t\t\tRuntimeGroupId: *pulumi.String(runtimeGroup.Id),\n\t\t\tHost:           pulumi.String(\"mockbin.org\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRuntimeGroupArgs;\nimport com.pulumi.konnect.Service;\nimport com.pulumi.konnect.ServiceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var runtimeGroup = KonnectFunctions.getRuntimeGroup(GetRuntimeGroupArgs.builder()\n            .name(\"TestRuntimeGroup\")\n            .build());\n\n        var example = new Service(\"example\", ServiceArgs.builder()        \n            .runtimeGroupId(runtimeGroup.applyValue(getRuntimeGroupResult -\u003e getRuntimeGroupResult.id()))\n            .host(\"mockbin.org\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: konnect:Service\n    properties:\n      runtimeGroupId: ${runtimeGroup.id}\n      host: mockbin.org\nvariables:\n  runtimeGroup:\n    fn::invoke:\n      Function: konnect:getRuntimeGroup\n      Arguments:\n        name: TestRuntimeGroup\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nServices can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "connectTimeout": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The timeout in milliseconds for establishing a connection to the host. Default: `60000`\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether the service is active. Default: `true`\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "**(Required, String)** The host of the service.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The name of the service.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The path to be used in requests to the host.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The port used to communicate with the host. Default: `80`\n"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The protocol used to communicate with the host. Allowed values: `grpc`, `grpcs`, `http`, `https`, `tcp`, `tls`, `tls_passthrough`, `udp`, `ws`, `wss`\n"
+                },
+                "readTimeout": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The timeout in milliseconds between two successive read operations for transmitting a request to the host. Default: `60000`\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The number of retries to execute upon failure to proxy. Default: `5`\n"
+                },
+                "runtimeGroupId": {
+                    "type": "string",
+                    "description": "**(Required, String)** The id of the runtime group.\n"
+                },
+                "serviceId": {
+                    "type": "string",
+                    "description": "**(String)** Id of the service alone\n"
+                },
+                "writeTimeout": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The timeout in milliseconds between two successive write operations for transmitting a request to the host. Default: `60000`\n"
+                }
+            },
+            "required": [
+                "host",
+                "name",
+                "runtimeGroupId",
+                "serviceId"
+            ],
+            "inputProperties": {
+                "connectTimeout": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The timeout in milliseconds for establishing a connection to the host. Default: `60000`\n"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "**(Optional, Boolean)** Whether the service is active. Default: `true`\n"
+                },
+                "host": {
+                    "type": "string",
+                    "description": "**(Required, String)** The host of the service.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The name of the service.\n"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The path to be used in requests to the host.\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The port used to communicate with the host. Default: `80`\n"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The protocol used to communicate with the host. Allowed values: `grpc`, `grpcs`, `http`, `https`, `tcp`, `tls`, `tls_passthrough`, `udp`, `ws`, `wss`\n"
+                },
+                "readTimeout": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The timeout in milliseconds between two successive read operations for transmitting a request to the host. Default: `60000`\n"
+                },
+                "retries": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The number of retries to execute upon failure to proxy. Default: `5`\n"
+                },
+                "runtimeGroupId": {
+                    "type": "string",
+                    "description": "**(Required, String)** The id of the runtime group.\n"
+                },
+                "writeTimeout": {
+                    "type": "integer",
+                    "description": "**(Optional, Integer)** The timeout in milliseconds between two successive write operations for transmitting a request to the host. Default: `60000`\n"
+                }
+            },
+            "requiredInputs": [
+                "host",
+                "runtimeGroupId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Service resources.\n",
+                "properties": {
+                    "connectTimeout": {
+                        "type": "integer",
+                        "description": "**(Optional, Integer)** The timeout in milliseconds for establishing a connection to the host. Default: `60000`\n"
+                    },
+                    "enabled": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** Whether the service is active. Default: `true`\n"
+                    },
+                    "host": {
+                        "type": "string",
+                        "description": "**(Required, String)** The host of the service.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The name of the service.\n"
+                    },
+                    "path": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The path to be used in requests to the host.\n"
+                    },
+                    "port": {
+                        "type": "integer",
+                        "description": "**(Optional, Integer)** The port used to communicate with the host. Default: `80`\n"
+                    },
+                    "protocol": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The protocol used to communicate with the host. Allowed values: `grpc`, `grpcs`, `http`, `https`, `tcp`, `tls`, `tls_passthrough`, `udp`, `ws`, `wss`\n"
+                    },
+                    "readTimeout": {
+                        "type": "integer",
+                        "description": "**(Optional, Integer)** The timeout in milliseconds between two successive read operations for transmitting a request to the host. Default: `60000`\n"
+                    },
+                    "retries": {
+                        "type": "integer",
+                        "description": "**(Optional, Integer)** The number of retries to execute upon failure to proxy. Default: `5`\n"
+                    },
+                    "runtimeGroupId": {
+                        "type": "string",
+                        "description": "**(Required, String)** The id of the runtime group.\n"
+                    },
+                    "serviceId": {
+                        "type": "string",
+                        "description": "**(String)** Id of the service alone\n"
+                    },
+                    "writeTimeout": {
+                        "type": "integer",
+                        "description": "**(Optional, Integer)** The timeout in milliseconds between two successive write operations for transmitting a request to the host. Default: `60000`\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/team:Team": {
+            "description": "Represents a team\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\n\nconst example = new konnect.Team(\"example\", {description: \"dev team\"});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\n\nexample = konnect.Team(\"example\", description=\"dev team\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Konnect.Team(\"example\", new()\n    {\n        Description = \"dev team\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.NewTeam(ctx, \"example\", \u0026konnect.TeamArgs{\n\t\t\tDescription: pulumi.String(\"dev team\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.Team;\nimport com.pulumi.konnect.TeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Team(\"example\", TeamArgs.builder()        \n            .description(\"dev team\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: konnect:Team\n    properties:\n      description: dev team\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nTeams can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The description of the team.\n"
+                },
+                "isPredefined": {
+                    "type": "boolean",
+                    "description": "**(Boolean)** Whether the team is predefined.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Required, String)** The name of the team.\n"
+                }
+            },
+            "required": [
+                "isPredefined",
+                "name"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The description of the team.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "**(Required, String)** The name of the team.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Team resources.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The description of the team.\n"
+                    },
+                    "isPredefined": {
+                        "type": "boolean",
+                        "description": "**(Boolean)** Whether the team is predefined.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "**(Required, String)** The name of the team.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/teamMappings:TeamMappings": {
+            "description": "Represents the mappings between an external identity provider group and a Konnect team\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\n\nconst team = new konnect.Team(\"team\", {description: \"testing\"});\nconst example = new konnect.TeamMappings(\"example\", {mappings: [{\n    group: \"external IdP group\",\n    teamIds: [team.id],\n}]});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\n\nteam = konnect.Team(\"team\", description=\"testing\")\nexample = konnect.TeamMappings(\"example\", mappings=[konnect.TeamMappingsMappingArgs(\n    group=\"external IdP group\",\n    team_ids=[team.id],\n)])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var team = new Konnect.Team(\"team\", new()\n    {\n        Description = \"testing\",\n    });\n\n    var example = new Konnect.TeamMappings(\"example\", new()\n    {\n        Mappings = new[]\n        {\n            new Konnect.Inputs.TeamMappingsMappingArgs\n            {\n                Group = \"external IdP group\",\n                TeamIds = new[]\n                {\n                    team.Id,\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tteam, err := konnect.NewTeam(ctx, \"team\", \u0026konnect.TeamArgs{\n\t\t\tDescription: pulumi.String(\"testing\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.NewTeamMappings(ctx, \"example\", \u0026konnect.TeamMappingsArgs{\n\t\t\tMappings: konnect.TeamMappingsMappingArray{\n\t\t\t\t\u0026konnect.TeamMappingsMappingArgs{\n\t\t\t\t\tGroup: pulumi.String(\"external IdP group\"),\n\t\t\t\t\tTeamIds: pulumi.StringArray{\n\t\t\t\t\t\tteam.ID(),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.Team;\nimport com.pulumi.konnect.TeamArgs;\nimport com.pulumi.konnect.TeamMappings;\nimport com.pulumi.konnect.TeamMappingsArgs;\nimport com.pulumi.konnect.inputs.TeamMappingsMappingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var team = new Team(\"team\", TeamArgs.builder()        \n            .description(\"testing\")\n            .build());\n\n        var example = new TeamMappings(\"example\", TeamMappingsArgs.builder()        \n            .mappings(TeamMappingsMappingArgs.builder()\n                .group(\"external IdP group\")\n                .teamIds(team.id())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  team:\n    type: konnect:Team\n    properties:\n      description: testing\n  example:\n    type: konnect:TeamMappings\n    properties:\n      mappings:\n        - group: external IdP group\n          teamIds:\n            - ${team.id}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nTeam mappings can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "mappings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/konnect:index/TeamMappingsMapping:TeamMappingsMapping"
+                    },
+                    "description": "**(Optional, set{mapping})** Configuration block for a mapping.  Can be specified multiple times for each mapping.  Each block supports the fields documented below.\n"
+                }
+            },
+            "inputProperties": {
+                "mappings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/konnect:index/TeamMappingsMapping:TeamMappingsMapping"
+                    },
+                    "description": "**(Optional, set{mapping})** Configuration block for a mapping.  Can be specified multiple times for each mapping.  Each block supports the fields documented below.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TeamMappings resources.\n",
+                "properties": {
+                    "mappings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/konnect:index/TeamMappingsMapping:TeamMappingsMapping"
+                        },
+                        "description": "**(Optional, set{mapping})** Configuration block for a mapping.  Can be specified multiple times for each mapping.  Each block supports the fields documented below.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/teamRole:TeamRole": {
+            "description": "Represents a role assigned to a team to access a given entity\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.Team;\nimport com.pulumi.konnect.TeamArgs;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRoleArgs;\nimport com.pulumi.konnect.RuntimeGroup;\nimport com.pulumi.konnect.RuntimeGroupArgs;\nimport com.pulumi.konnect.TeamRole;\nimport com.pulumi.konnect.TeamRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var team = new Team(\"team\", TeamArgs.builder()        \n            .description(\"testing\")\n            .build());\n\n        final var role = KonnectFunctions.getRole(GetRoleArgs.builder()\n            .groupDisplayName(\"Runtime Groups\")\n            .displayName(\"Admin\")\n            .build());\n\n        var runtimeGroup = new RuntimeGroup(\"runtimeGroup\", RuntimeGroupArgs.builder()        \n            .description(\"testing\")\n            .build());\n\n        var example = new TeamRole(\"example\", TeamRoleArgs.builder()        \n            .teamId(team.id())\n            .entityId(runtimeGroup.id())\n            .entityTypeDisplayName(\"Runtime Groups\")\n            .entityRegion(\"us\")\n            .roleDisplayName(role.applyValue(getRoleResult -\u003e getRoleResult.displayName()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  team:\n    type: konnect:Team\n    properties:\n      description: testing\n  runtimeGroup:\n    type: konnect:RuntimeGroup\n    properties:\n      description: testing\n  example:\n    type: konnect:TeamRole\n    properties:\n      teamId: ${team.id}\n      entityId: ${runtimeGroup.id}\n      entityTypeDisplayName: Runtime Groups\n      entityRegion: us\n      roleDisplayName: ${role.displayName}\nvariables:\n  role:\n    fn::invoke:\n      Function: konnect:getRole\n      Arguments:\n        groupDisplayName: Runtime Groups\n        displayName: Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nTeam roles can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "entityId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the entity for which the role applies.\n"
+                },
+                "entityRegion": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The region of the entity for which the role applies.\n"
+                },
+                "entityTypeDisplayName": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The display name of the entity type, like `Runtime Groups` or `Services`.\n"
+                },
+                "roleDisplayName": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The display name of the role.\n"
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the team assigned the role\n"
+                }
+            },
+            "required": [
+                "entityId",
+                "entityRegion",
+                "entityTypeDisplayName",
+                "roleDisplayName",
+                "teamId"
+            ],
+            "inputProperties": {
+                "entityId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the entity for which the role applies.\n",
+                    "willReplaceOnChanges": true
+                },
+                "entityRegion": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The region of the entity for which the role applies.\n",
+                    "willReplaceOnChanges": true
+                },
+                "entityTypeDisplayName": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The display name of the entity type, like `Runtime Groups` or `Services`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "roleDisplayName": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The display name of the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "teamId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the team assigned the role\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "entityId",
+                "entityRegion",
+                "entityTypeDisplayName",
+                "roleDisplayName",
+                "teamId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TeamRole resources.\n",
+                "properties": {
+                    "entityId": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The id of the entity for which the role applies.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "entityRegion": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The region of the entity for which the role applies.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "entityTypeDisplayName": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The display name of the entity type, like `Runtime Groups` or `Services`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "roleDisplayName": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The display name of the role.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "teamId": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The id of the team assigned the role\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/teamUser:TeamUser": {
+            "description": "Represents a member of a team\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst team = new konnect.Team(\"team\", {description: \"testing\"});\nconst user = konnect.getUser({\n    searchFullName: \"Joe\",\n});\nconst example = new konnect.TeamUser(\"example\", {\n    teamId: team.id,\n    userId: user.then(user =\u003e user.id),\n});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\nimport pulumi_konnect as konnect\n\nteam = konnect.Team(\"team\", description=\"testing\")\nuser = konnect.get_user(search_full_name=\"Joe\")\nexample = konnect.TeamUser(\"example\",\n    team_id=team.id,\n    user_id=user.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var team = new Konnect.Team(\"team\", new()\n    {\n        Description = \"testing\",\n    });\n\n    var user = Konnect.GetUser.Invoke(new()\n    {\n        SearchFullName = \"Joe\",\n    });\n\n    var example = new Konnect.TeamUser(\"example\", new()\n    {\n        TeamId = team.Id,\n        UserId = user.Apply(getUserResult =\u003e getUserResult.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tteam, err := konnect.NewTeam(ctx, \"team\", \u0026konnect.TeamArgs{\n\t\t\tDescription: pulumi.String(\"testing\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tuser, err := konnect.LookupUser(ctx, \u0026konnect.LookupUserArgs{\n\t\t\tSearchFullName: pulumi.StringRef(\"Joe\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.NewTeamUser(ctx, \"example\", \u0026konnect.TeamUserArgs{\n\t\t\tTeamId: team.ID(),\n\t\t\tUserId: *pulumi.String(user.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.Team;\nimport com.pulumi.konnect.TeamArgs;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetUserArgs;\nimport com.pulumi.konnect.TeamUser;\nimport com.pulumi.konnect.TeamUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var team = new Team(\"team\", TeamArgs.builder()        \n            .description(\"testing\")\n            .build());\n\n        final var user = KonnectFunctions.getUser(GetUserArgs.builder()\n            .searchFullName(\"Joe\")\n            .build());\n\n        var example = new TeamUser(\"example\", TeamUserArgs.builder()        \n            .teamId(team.id())\n            .userId(user.applyValue(getUserResult -\u003e getUserResult.id()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  team:\n    type: konnect:Team\n    properties:\n      description: testing\n  example:\n    type: konnect:TeamUser\n    properties:\n      teamId: ${team.id}\n      userId: ${user.id}\nvariables:\n  user:\n    fn::invoke:\n      Function: konnect:getUser\n      Arguments:\n        searchFullName: Joe\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nTeam users can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "teamId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the team.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the user.\n"
+                }
+            },
+            "required": [
+                "teamId",
+                "userId"
+            ],
+            "inputProperties": {
+                "teamId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the team.\n",
+                    "willReplaceOnChanges": true
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the user.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "teamId",
+                "userId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering TeamUser resources.\n",
+                "properties": {
+                    "teamId": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The id of the team.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The id of the user.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/user:User": {
+            "description": "Represents a user\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@johnharris85/konnect\";\n\nconst example = new konnect.User(\"example\", {\n    email: \"Joe.Burrow@example.com\",\n    fullName: \"Joe Burrow\",\n    preferredName: \"Joe\",\n});\n```\n```python\nimport pulumi\nimport johnharris85_konnect as konnect\n\nexample = konnect.User(\"example\",\n    email=\"Joe.Burrow@example.com\",\n    full_name=\"Joe Burrow\",\n    preferred_name=\"Joe\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = johnharris85.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Konnect.User(\"example\", new()\n    {\n        Email = \"Joe.Burrow@example.com\",\n        FullName = \"Joe Burrow\",\n        PreferredName = \"Joe\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.NewUser(ctx, \"example\", \u0026konnect.UserArgs{\n\t\t\tEmail:         pulumi.String(\"Joe.Burrow@example.com\"),\n\t\t\tFullName:      pulumi.String(\"Joe Burrow\"),\n\t\t\tPreferredName: pulumi.String(\"Joe\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.User;\nimport com.pulumi.konnect.UserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new User(\"example\", UserArgs.builder()        \n            .email(\"Joe.Burrow@example.com\")\n            .fullName(\"Joe Burrow\")\n            .preferredName(\"Joe\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: konnect:User\n    properties:\n      email: Joe.Burrow@example.com\n      fullName: Joe Burrow\n      preferredName: Joe\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nUsers can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "active": {
+                    "type": "boolean",
+                    "description": "**(Boolean)** Whether the user is active.\n"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "**(Required, String)** The email of the user.\n"
+                },
+                "fullName": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The full name of the user.\n"
+                },
+                "preferredName": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The preferred name of the user.\n"
+                }
+            },
+            "required": [
+                "active",
+                "email"
+            ],
+            "inputProperties": {
+                "email": {
+                    "type": "string",
+                    "description": "**(Required, String)** The email of the user.\n"
+                },
+                "fullName": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The full name of the user.\n"
+                },
+                "preferredName": {
+                    "type": "string",
+                    "description": "**(Optional, String)** The preferred name of the user.\n"
+                }
+            },
+            "requiredInputs": [
+                "email"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering User resources.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean",
+                        "description": "**(Boolean)** Whether the user is active.\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "**(Required, String)** The email of the user.\n"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The full name of the user.\n"
+                    },
+                    "preferredName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The preferred name of the user.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "konnect:index/userRole:UserRole": {
+            "description": "Represents a role assigned to a user to access a given entity\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.User;\nimport com.pulumi.konnect.UserArgs;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRoleArgs;\nimport com.pulumi.konnect.RuntimeGroup;\nimport com.pulumi.konnect.RuntimeGroupArgs;\nimport com.pulumi.konnect.UserRole;\nimport com.pulumi.konnect.UserRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var user = new User(\"user\", UserArgs.builder()        \n            .email(\"Joe.Burrow@example.com\")\n            .fullName(\"Joe Burrow\")\n            .preferredName(\"Joe\")\n            .build());\n\n        final var role = KonnectFunctions.getRole(GetRoleArgs.builder()\n            .groupDisplayName(\"Runtime Groups\")\n            .displayName(\"Admin\")\n            .build());\n\n        var runtimeGroup = new RuntimeGroup(\"runtimeGroup\", RuntimeGroupArgs.builder()        \n            .description(\"testing\")\n            .build());\n\n        var example = new UserRole(\"example\", UserRoleArgs.builder()        \n            .userId(user.id())\n            .entityId(runtimeGroup.id())\n            .entityTypeDisplayName(\"Runtime Groups\")\n            .entityRegion(\"us\")\n            .roleDisplayName(role.applyValue(getRoleResult -\u003e getRoleResult.displayName()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  user:\n    type: konnect:User\n    properties:\n      email: Joe.Burrow@example.com\n      fullName: Joe Burrow\n      preferredName: Joe\n  runtimeGroup:\n    type: konnect:RuntimeGroup\n    properties:\n      description: testing\n  example:\n    type: konnect:UserRole\n    properties:\n      userId: ${user.id}\n      entityId: ${runtimeGroup.id}\n      entityTypeDisplayName: Runtime Groups\n      entityRegion: us\n      roleDisplayName: ${role.displayName}\nvariables:\n  role:\n    fn::invoke:\n      Function: konnect:getRole\n      Arguments:\n        groupDisplayName: Runtime Groups\n        displayName: Admin\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nUser roles can be imported using a proper value of `id` as described above ",
+            "properties": {
+                "entityId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the entity for which the role applies.\n"
+                },
+                "entityRegion": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The region of the entity for which the role applies.\n"
+                },
+                "entityTypeDisplayName": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The display name of the entity type, like `Runtime Groups` or `Services`.\n"
+                },
+                "roleDisplayName": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The display name of the role.\n"
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the user assigned the role\n"
+                }
+            },
+            "required": [
+                "entityId",
+                "entityRegion",
+                "entityTypeDisplayName",
+                "roleDisplayName",
+                "userId"
+            ],
+            "inputProperties": {
+                "entityId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the entity for which the role applies.\n",
+                    "willReplaceOnChanges": true
+                },
+                "entityRegion": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The region of the entity for which the role applies.\n",
+                    "willReplaceOnChanges": true
+                },
+                "entityTypeDisplayName": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The display name of the entity type, like `Runtime Groups` or `Services`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "roleDisplayName": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The display name of the role.\n",
+                    "willReplaceOnChanges": true
+                },
+                "userId": {
+                    "type": "string",
+                    "description": "**(Required, ForceNew, String)** The id of the user assigned the role\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "entityId",
+                "entityRegion",
+                "entityTypeDisplayName",
+                "roleDisplayName",
+                "userId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering UserRole resources.\n",
+                "properties": {
+                    "entityId": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The id of the entity for which the role applies.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "entityRegion": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The region of the entity for which the role applies.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "entityTypeDisplayName": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The display name of the entity type, like `Runtime Groups` or `Services`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "roleDisplayName": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The display name of the role.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "**(Required, ForceNew, String)** The id of the user assigned the role\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "konnect:index/getConsumer:getConsumer": {
+            "description": "Represents a consumer\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst runtimeGroup = konnect.getRuntimeGroup({\n    name: \"TestRuntimeGroup\",\n});\nconst example = runtimeGroup.then(runtimeGroup =\u003e konnect.getConsumer({\n    runtimeGroupId: runtimeGroup.id,\n    searchUsername: \"Bob\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_konnect as konnect\n\nruntime_group = konnect.get_runtime_group(name=\"TestRuntimeGroup\")\nexample = konnect.get_consumer(runtime_group_id=runtime_group.id,\n    search_username=\"Bob\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var runtimeGroup = Konnect.GetRuntimeGroup.Invoke(new()\n    {\n        Name = \"TestRuntimeGroup\",\n    });\n\n    var example = Konnect.GetConsumer.Invoke(new()\n    {\n        RuntimeGroupId = runtimeGroup.Apply(getRuntimeGroupResult =\u003e getRuntimeGroupResult.Id),\n        SearchUsername = \"Bob\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\truntimeGroup, err := konnect.LookupRuntimeGroup(ctx, \u0026konnect.LookupRuntimeGroupArgs{\n\t\t\tName: pulumi.StringRef(\"TestRuntimeGroup\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.LookupConsumer(ctx, \u0026konnect.LookupConsumerArgs{\n\t\t\tRuntimeGroupId: runtimeGroup.Id,\n\t\t\tSearchUsername: pulumi.StringRef(\"Bob\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRuntimeGroupArgs;\nimport com.pulumi.konnect.inputs.GetConsumerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var runtimeGroup = KonnectFunctions.getRuntimeGroup(GetRuntimeGroupArgs.builder()\n            .name(\"TestRuntimeGroup\")\n            .build());\n\n        final var example = KonnectFunctions.getConsumer(GetConsumerArgs.builder()\n            .runtimeGroupId(runtimeGroup.applyValue(getRuntimeGroupResult -\u003e getRuntimeGroupResult.id()))\n            .searchUsername(\"Bob\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  runtimeGroup:\n    fn::invoke:\n      Function: konnect:getRuntimeGroup\n      Arguments:\n        name: TestRuntimeGroup\n  example:\n    fn::invoke:\n      Function: konnect:getConsumer\n      Arguments:\n        runtimeGroupId: ${runtimeGroup.id}\n        searchUsername: Bob\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getConsumer.\n",
+                "properties": {
+                    "customId": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the custom_id of the consumer. Uses equality.\n"
+                    },
+                    "runtimeGroupId": {
+                        "type": "string",
+                        "description": "**(Required, String)** The id of the runtime group containing consumer\n"
+                    },
+                    "searchCustomId": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the custom_id of the consumer. Uses contains.\n"
+                    },
+                    "searchUsername": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the username of the consumer. Uses contains.\n"
+                    },
+                    "username": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the username of the consumer. Uses equality.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "runtimeGroupId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getConsumer.\n",
+                "properties": {
+                    "consumerId": {
+                        "type": "string",
+                        "description": "**(String)** Id of the consumer alone\n"
+                    },
+                    "customId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "runtimeGroupId": {
+                        "type": "string"
+                    },
+                    "searchCustomId": {
+                        "type": "string"
+                    },
+                    "searchUsername": {
+                        "type": "string"
+                    },
+                    "username": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "consumerId",
+                    "runtimeGroupId",
+                    "id"
+                ]
+            }
+        },
+        "konnect:index/getNodes:getNodes": {
+            "description": "Represents all nodes of a runtime group\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst runtimeGroup = konnect.getRuntimeGroup({\n    name: \"TestRuntimeGroup\",\n});\nconst example = runtimeGroup.then(runtimeGroup =\u003e konnect.getNodes({\n    runtimeGroupId: runtimeGroup.id,\n}));\n```\n```python\nimport pulumi\nimport pulumi_konnect as konnect\n\nruntime_group = konnect.get_runtime_group(name=\"TestRuntimeGroup\")\nexample = konnect.get_nodes(runtime_group_id=runtime_group.id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var runtimeGroup = Konnect.GetRuntimeGroup.Invoke(new()\n    {\n        Name = \"TestRuntimeGroup\",\n    });\n\n    var example = Konnect.GetNodes.Invoke(new()\n    {\n        RuntimeGroupId = runtimeGroup.Apply(getRuntimeGroupResult =\u003e getRuntimeGroupResult.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\truntimeGroup, err := konnect.LookupRuntimeGroup(ctx, \u0026konnect.LookupRuntimeGroupArgs{\n\t\t\tName: pulumi.StringRef(\"TestRuntimeGroup\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.GetNodes(ctx, \u0026konnect.GetNodesArgs{\n\t\t\tRuntimeGroupId: runtimeGroup.Id,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRuntimeGroupArgs;\nimport com.pulumi.konnect.inputs.GetNodesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var runtimeGroup = KonnectFunctions.getRuntimeGroup(GetRuntimeGroupArgs.builder()\n            .name(\"TestRuntimeGroup\")\n            .build());\n\n        final var example = KonnectFunctions.getNodes(GetNodesArgs.builder()\n            .runtimeGroupId(runtimeGroup.applyValue(getRuntimeGroupResult -\u003e getRuntimeGroupResult.id()))\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  runtimeGroup:\n    fn::invoke:\n      Function: konnect:getRuntimeGroup\n      Arguments:\n        name: TestRuntimeGroup\n  example:\n    fn::invoke:\n      Function: konnect:getNodes\n      Arguments:\n        runtimeGroupId: ${runtimeGroup.id}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getNodes.\n",
+                "properties": {
+                    "runtimeGroupId": {
+                        "type": "string",
+                        "description": "**(Required, String)** The id of the parent runtime group.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "runtimeGroupId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNodes.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "nodes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/konnect:index/getNodesNode:getNodesNode"
+                        },
+                        "description": "**(set{node})** Set of nodes belonging to runtime group\n"
+                    },
+                    "runtimeGroupId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "nodes",
+                    "runtimeGroupId",
+                    "id"
+                ]
+            }
+        },
+        "konnect:index/getRole:getRole": {
+            "description": "Represents a role\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst example = konnect.getRole({\n    displayName: \"Admin\",\n    entityTypeDisplayName: \"Runtime Groups\",\n});\n```\n```python\nimport pulumi\nimport pulumi_konnect as konnect\n\nexample = konnect.get_role(display_name=\"Admin\",\n    entity_type_display_name=\"Runtime Groups\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Konnect.GetRole.Invoke(new()\n    {\n        DisplayName = \"Admin\",\n        EntityTypeDisplayName = \"Runtime Groups\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.GetRole(ctx, \u0026konnect.GetRoleArgs{\n\t\t\tDisplayName:           \"Admin\",\n\t\t\tEntityTypeDisplayName: \"Runtime Groups\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = KonnectFunctions.getRole(GetRoleArgs.builder()\n            .displayName(\"Admin\")\n            .entityTypeDisplayName(\"Runtime Groups\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: konnect:getRole\n      Arguments:\n        displayName: Admin\n        entityTypeDisplayName: Runtime Groups\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getRole.\n",
+                "properties": {
+                    "displayName": {
+                        "type": "string",
+                        "description": "**(Required, String)** The display name of the Role. Uses equality.\n"
+                    },
+                    "entityTypeDisplayName": {
+                        "type": "string",
+                        "description": "**(Required, String)** The display name of the role entity type. Must be `Runtime Groups` or `Services`\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "displayName",
+                    "entityTypeDisplayName"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getRole.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "**(String)** The description of the role.\n"
+                    },
+                    "displayName": {
+                        "type": "string"
+                    },
+                    "entityTypeDisplayName": {
+                        "type": "string"
+                    },
+                    "entityTypeName": {
+                        "type": "string",
+                        "description": "**(String)** The name of the role entity type.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "**(String)** The name of the role.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "displayName",
+                    "entityTypeDisplayName",
+                    "entityTypeName",
+                    "name",
+                    "id"
+                ]
+            }
+        },
+        "konnect:index/getRuntimeGroup:getRuntimeGroup": {
+            "description": "Represents a runtime group\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst example = konnect.getRuntimeGroup({\n    name: \"TestRuntimeGroup\",\n});\n```\n```python\nimport pulumi\nimport pulumi_konnect as konnect\n\nexample = konnect.get_runtime_group(name=\"TestRuntimeGroup\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Konnect.GetRuntimeGroup.Invoke(new()\n    {\n        Name = \"TestRuntimeGroup\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.LookupRuntimeGroup(ctx, \u0026konnect.LookupRuntimeGroupArgs{\n\t\t\tName: pulumi.StringRef(\"TestRuntimeGroup\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetRuntimeGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = KonnectFunctions.getRuntimeGroup(GetRuntimeGroupArgs.builder()\n            .name(\"TestRuntimeGroup\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: konnect:getRuntimeGroup\n      Arguments:\n        name: TestRuntimeGroup\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getRuntimeGroup.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the name of the runtime group. Uses equality.\n"
+                    },
+                    "searchName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the name of the runtime group. Uses contains.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getRuntimeGroup.\n",
+                "properties": {
+                    "clusterType": {
+                        "type": "string",
+                        "description": "**(String)** The cluster type of the runtime group.\n"
+                    },
+                    "controlPlaneEndpoint": {
+                        "type": "string",
+                        "description": "**(String)** The control plane endpoint URL of the runtime group.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "**(String)** The description of the runtime group.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "searchName": {
+                        "type": "string"
+                    },
+                    "telemetryEndpoint": {
+                        "type": "string",
+                        "description": "**(String)** The telemetry endpoint URL of the runtime group.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "clusterType",
+                    "controlPlaneEndpoint",
+                    "description",
+                    "telemetryEndpoint",
+                    "id"
+                ]
+            }
+        },
+        "konnect:index/getTeam:getTeam": {
+            "description": "Represents a team\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst example = konnect.getTeam({\n    searchName: \"Panther\",\n});\n```\n```python\nimport pulumi\nimport pulumi_konnect as konnect\n\nexample = konnect.get_team(search_name=\"Panther\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Konnect.GetTeam.Invoke(new()\n    {\n        SearchName = \"Panther\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.LookupTeam(ctx, \u0026konnect.LookupTeamArgs{\n\t\t\tSearchName: pulumi.StringRef(\"Panther\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetTeamArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = KonnectFunctions.getTeam(GetTeamArgs.builder()\n            .searchName(\"Panther\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: konnect:getTeam\n      Arguments:\n        searchName: Panther\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getTeam.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the name of the team. Uses equality.\n"
+                    },
+                    "searchName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the name of the team. Uses contains.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getTeam.\n",
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "description": "**(String)** The description of the team.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "isPredefined": {
+                        "type": "boolean",
+                        "description": "**(Boolean)** Whether the team is predefined.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "searchName": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "isPredefined",
+                    "id"
+                ]
+            }
+        },
+        "konnect:index/getTeamRole:getTeamRole": {
+            "description": "Represents a role assigned to a team\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst team = konnect.getTeam({\n    name: \"runtime-admin\",\n});\nconst example = team.then(team =\u003e konnect.getTeamRole({\n    teamId: team.id,\n    entityTypeDisplayName: \"Runtime Groups\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_konnect as konnect\n\nteam = konnect.get_team(name=\"runtime-admin\")\nexample = konnect.get_team_role(team_id=team.id,\n    entity_type_display_name=\"Runtime Groups\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var team = Konnect.GetTeam.Invoke(new()\n    {\n        Name = \"runtime-admin\",\n    });\n\n    var example = Konnect.GetTeamRole.Invoke(new()\n    {\n        TeamId = team.Apply(getTeamResult =\u003e getTeamResult.Id),\n        EntityTypeDisplayName = \"Runtime Groups\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tteam, err := konnect.LookupTeam(ctx, \u0026konnect.LookupTeamArgs{\n\t\t\tName: pulumi.StringRef(\"runtime-admin\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.LookupTeamRole(ctx, \u0026konnect.LookupTeamRoleArgs{\n\t\t\tTeamId:                team.Id,\n\t\t\tEntityTypeDisplayName: pulumi.StringRef(\"Runtime Groups\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetTeamArgs;\nimport com.pulumi.konnect.inputs.GetTeamRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var team = KonnectFunctions.getTeam(GetTeamArgs.builder()\n            .name(\"runtime-admin\")\n            .build());\n\n        final var example = KonnectFunctions.getTeamRole(GetTeamRoleArgs.builder()\n            .teamId(team.applyValue(getTeamResult -\u003e getTeamResult.id()))\n            .entityTypeDisplayName(\"Runtime Groups\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  team:\n    fn::invoke:\n      Function: konnect:getTeam\n      Arguments:\n        name: runtime-admin\n  example:\n    fn::invoke:\n      Function: konnect:getTeamRole\n      Arguments:\n        teamId: ${team.id}\n        entityTypeDisplayName: Runtime Groups\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getTeamRole.\n",
+                "properties": {
+                    "entityTypeDisplayName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the display name of the entity type. Must be `Runtime Groups` or `Services`. Uses equality.\n"
+                    },
+                    "roleDisplayName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the display name of the role. Uses equality.\n"
+                    },
+                    "searchEntityTypeDisplayName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the display name of the entity type, like `Runtime Groups` or `Services`. Uses contains.\n"
+                    },
+                    "searchRoleDisplayName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the display name of the role. Uses contains.\n"
+                    },
+                    "teamId": {
+                        "type": "string",
+                        "description": "**(Required, String)** The id of the team assigned the role\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "teamId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getTeamRole.\n",
+                "properties": {
+                    "entityId": {
+                        "type": "string",
+                        "description": "**(String)** The id of the entity for which the role applies.\n"
+                    },
+                    "entityRegion": {
+                        "type": "string",
+                        "description": "**(String)** The region of the entity for which the role applies.\n"
+                    },
+                    "entityTypeDisplayName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "roleDisplayName": {
+                        "type": "string"
+                    },
+                    "searchEntityTypeDisplayName": {
+                        "type": "string"
+                    },
+                    "searchRoleDisplayName": {
+                        "type": "string"
+                    },
+                    "teamId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "entityId",
+                    "entityRegion",
+                    "teamId",
+                    "id"
+                ]
+            }
+        },
+        "konnect:index/getUser:getUser": {
+            "description": "Represents a user\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst example = konnect.getUser({\n    searchEmail: \"@example.com\",\n});\n```\n```python\nimport pulumi\nimport pulumi_konnect as konnect\n\nexample = konnect.get_user(search_email=\"@example.com\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = Konnect.GetUser.Invoke(new()\n    {\n        SearchEmail = \"@example.com\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := konnect.LookupUser(ctx, \u0026konnect.LookupUserArgs{\n\t\t\tSearchEmail: pulumi.StringRef(\"@example.com\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetUserArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var example = KonnectFunctions.getUser(GetUserArgs.builder()\n            .searchEmail(\"@example.com\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  example:\n    fn::invoke:\n      Function: konnect:getUser\n      Arguments:\n        searchEmail: '@example.com'\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUser.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean",
+                        "description": "**(Optional, Boolean)** The filter flag to apply to the active flag of the user. Uses equality. Default: `true`\n"
+                    },
+                    "email": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the email of the user. Uses equality.\n"
+                    },
+                    "fullName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the full name of the user. Uses equality.\n"
+                    },
+                    "searchEmail": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the email of the user. Uses contains.\n"
+                    },
+                    "searchFullName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the full name of the user. Uses contains.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUser.\n",
+                "properties": {
+                    "active": {
+                        "type": "boolean"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "fullName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "preferredName": {
+                        "type": "string",
+                        "description": "**(String)** The preferred name of the user.\n"
+                    },
+                    "searchEmail": {
+                        "type": "string"
+                    },
+                    "searchFullName": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "preferredName",
+                    "id"
+                ]
+            }
+        },
+        "konnect:index/getUserRole:getUserRole": {
+            "description": "Represents a role assigned to a user\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as konnect from \"@pulumi/konnect\";\n\nconst user = konnect.getUser({\n    searchFullName: \"Joe\",\n});\nconst example = user.then(user =\u003e konnect.getUserRole({\n    userId: user.id,\n    entityTypeDisplayName: \"Runtime Groups\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_konnect as konnect\n\nuser = konnect.get_user(search_full_name=\"Joe\")\nexample = konnect.get_user_role(user_id=user.id,\n    entity_type_display_name=\"Runtime Groups\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Konnect = Pulumi.Konnect;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var user = Konnect.GetUser.Invoke(new()\n    {\n        SearchFullName = \"Joe\",\n    });\n\n    var example = Konnect.GetUserRole.Invoke(new()\n    {\n        UserId = user.Apply(getUserResult =\u003e getUserResult.Id),\n        EntityTypeDisplayName = \"Runtime Groups\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/johnharris85/pulumi-konnect/sdk/go/konnect\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tuser, err := konnect.LookupUser(ctx, \u0026konnect.LookupUserArgs{\n\t\t\tSearchFullName: pulumi.StringRef(\"Joe\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = konnect.LookupUserRole(ctx, \u0026konnect.LookupUserRoleArgs{\n\t\t\tUserId:                user.Id,\n\t\t\tEntityTypeDisplayName: pulumi.StringRef(\"Runtime Groups\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.konnect.KonnectFunctions;\nimport com.pulumi.konnect.inputs.GetUserArgs;\nimport com.pulumi.konnect.inputs.GetUserRoleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var user = KonnectFunctions.getUser(GetUserArgs.builder()\n            .searchFullName(\"Joe\")\n            .build());\n\n        final var example = KonnectFunctions.getUserRole(GetUserRoleArgs.builder()\n            .userId(user.applyValue(getUserResult -\u003e getUserResult.id()))\n            .entityTypeDisplayName(\"Runtime Groups\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  user:\n    fn::invoke:\n      Function: konnect:getUser\n      Arguments:\n        searchFullName: Joe\n  example:\n    fn::invoke:\n      Function: konnect:getUserRole\n      Arguments:\n        userId: ${user.id}\n        entityTypeDisplayName: Runtime Groups\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getUserRole.\n",
+                "properties": {
+                    "entityTypeDisplayName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the display name of the entity type. Must be `Runtime Groups` or `Services`. Uses equality.\n"
+                    },
+                    "roleDisplayName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The filter string to apply to the display name of the role. Uses equality.\n"
+                    },
+                    "searchEntityTypeDisplayName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the display name of the entity type, like `Runtime Groups` or `Services`. Uses contains.\n"
+                    },
+                    "searchRoleDisplayName": {
+                        "type": "string",
+                        "description": "**(Optional, String)** The search string to apply to the display name of the role. Uses contains.\n"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "description": "**(Required, String)** The id of the user assigned the role\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "userId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getUserRole.\n",
+                "properties": {
+                    "entityId": {
+                        "type": "string",
+                        "description": "**(String)** The id of the entity for which the role applies.\n"
+                    },
+                    "entityRegion": {
+                        "type": "string",
+                        "description": "**(String)** The region of the entity for which the role applies.\n"
+                    },
+                    "entityTypeDisplayName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "roleDisplayName": {
+                        "type": "string"
+                    },
+                    "searchEntityTypeDisplayName": {
+                        "type": "string"
+                    },
+                    "searchRoleDisplayName": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "entityId",
+                    "entityRegion",
+                    "userId",
+                    "id"
+                ]
+            }
+        }
+    }
+}
